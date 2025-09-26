@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <div class="header">
-        <div class="header--title">
+        <div class="header-title">
           <span>🔮</span>
           <h1>AI 사주 운세</h1>
         </div>
@@ -54,14 +54,32 @@
                   />
                 </div>
               </div>
-
               <div class="form-field">
                 <label>성별 *</label>
-                <select id="gender" required>
-                  <option value="">선택하세요</option>
-                  <option value="남성">남성</option>
-                  <option value="여성">여성</option>
-                </select>
+                <div class="fortune-types gender-types">
+                  <label class="fortune-type gender-type" for="gender-male">
+                    <input
+                      type="radio"
+                      name="gender"
+                      id="gender-male"
+                      value="male"
+                      required
+                    />
+                    <span class="icon">👨</span>
+                    <span>남성</span>
+                  </label>
+                  <label class="fortune-type gender-type" for="gender-female">
+                    <input
+                      type="radio"
+                      name="gender"
+                      id="gender-female"
+                      value="female"
+                      required
+                    />
+                    <span class="icon">👩</span>
+                    <span>여성</span>
+                  </label>
+                </div>
               </div>
 
               <div class="form-field">

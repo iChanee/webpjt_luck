@@ -118,7 +118,7 @@ body::before {
   z-index: 1;
 }
 
-.header--title {
+.header-title {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -286,6 +286,10 @@ body::before {
   user-select: none;
   position: relative;
   overflow: hidden;
+}
+
+.gender-type input {
+  display: none;
 }
 
 .fortune-type::before {
@@ -609,9 +613,6 @@ body::before {
 
   .header {
     padding: 30px 20px;
-  }
-
-  .header h1 {
     font-size: 28px;
   }
 
