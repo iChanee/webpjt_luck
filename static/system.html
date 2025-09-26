@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운세 웹페이지 시스템 구성도</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 28px;
+        }
+        
+        .architecture {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 50px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .component {
+            background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+            border: 3px solid #4a90e2;
+            border-radius: 15px;
+            padding: 25px;
+            min-width: 180px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .component h3 {
+            color: #4a90e2;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .component .tech {
+            background: #4a90e2;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 5px 2px;
+            display: inline-block;
+        }
+        
+        .component .file {
+            background: #28a745;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            margin: 3px 2px;
+            display: inline-block;
+        }
+        
+        .arrow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 120px;
+        }
+        
+        .arrow-right, .arrow-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .arrow-symbol {
+            font-size: 24px;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .arrow-label {
+            background: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .step-number {
+            background: #dc3545;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+            letter-spacing: 2px;
+        }
+        
+        .arrow-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        
+        .client {
+            background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+            border-color: #2196f3;
+        }
+        
+        .client h3 {
+            color: #2196f3;
+        }
+        
+        .server {
+            background: linear-gradient(145deg, #fff3e0, #ffe0b2);
+            border-color: #ff9800;
+        }
+        
+        .server h3 {
+            color: #ff9800;
+        }
+        
+        .external {
+            background: linear-gradient(145deg, #f3e5f5, #e1bee7);
+            border-color: #9c27b0;
+        }
+        
+        .external h3 {
+            color: #9c27b0;
+        }
+        
+        .flow-description {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #28a745;
+        }
+        
+        .flow-description h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        
+        .flow-step {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #4a90e2;
+        }
+        
+        /* 페이지 상단에 단계별 요약 추가 */
+        .process-overview {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .process-step {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+        }
+        
+        .process-arrow {
+            color: rgba(255,255,255,0.7);
+            font-size: 18px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .architecture {
+                flex-direction: column;
+            }
+            
+            .arrow-container {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+            
+            .arrow-right, .arrow-left {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+            }
+            
+            .component {
+                min-width: 250px;
+            }
+            
+            .legend {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .process-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 운세 웹페이지 시스템 구성도</h1>
+        
+        <div class="process-overview">
+            <h3 style="margin: 0 0 10px 0;">🔄 실행 흐름 요약</h3>
+            <div class="process-steps">
+                <div class="process-step">① 페이지 로드</div>
+                <span class="process-arrow">→</span>
+                <div class="process-step">② 사용자 입력</div>
+                <span class="process-arrow">→</span>
+                <div class="process-step">③ 서버 전송</div>
+                <span class="process-arrow">→</span>
+                <div class="process-step">④ AI 요청</div>
+                <span class="process-arrow">→</span>
+                <div class="process-step">⑤ AI 응답</div>
+                <span class="process-arrow">→</span>
+                <div class="process-step">⑥ 결과 전송</div>
+                <span class="process-arrow">→</span>
+                <div class="process-step">⑦ 화면 표시</div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(145deg, #e3f2fd, #bbdefb);"></div>
+                <span>클라이언트 (Frontend)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(145deg, #fff3e0, #ffe0b2);"></div>
+                <span>서버 (Backend)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(145deg, #f3e5f5, #e1bee7);"></div>
+                <span>외부 서비스</span>
+            </div>
+        </div>
+        
+        <div class="architecture">
+            <div class="component client">
+                <h3>🌐 웹 브라우저 (Frontend)</h3>
+                <div class="tech">HTML</div>
+                <div class="tech">CSS</div>
+                <div class="tech">JavaScript</div>
+                <br><br>
+                <div class="file">index.html</div>
+                <div class="file">style.css</div>
+                <div class="file">script.js</div>
+            </div>
+            
+            <div class="arrow-container">
+                <div class="arrow-right">
+                    <div class="arrow-label">③ HTTP POST</div>
+                    <div class="arrow-symbol">→</div>
+                </div>
+                <div class="arrow-left">
+                    <div class="arrow-symbol">←</div>
+                    <div class="arrow-label">⑥ JSON 응답</div>
+                </div>
+            </div>
+            
+            <div class="component server">
+                <h3>🖥️ FastAPI 서버 (Backend)</h3>
+                <div class="tech">Python</div>
+                <div class="tech">FastAPI</div>
+                <div class="tech">Uvicorn</div>
+                <br><br>
+                <div class="file">main.py</div>
+                <div class="file">requirements.txt</div>
+            </div>
+            
+            <div class="arrow-container">
+                <div class="arrow-right">
+                    <div class="arrow-label">④ AI 요청</div>
+                    <div class="arrow-symbol">→</div>
+                </div>
+                <div class="arrow-left">
+                    <div class="arrow-symbol">←</div>
+                    <div class="arrow-label">⑤ 운세 결과</div>
+                </div>
+            </div>
+            
+            <div class="component external">
+                <h3>🤖 OpenAI API (External)</h3>
+                <div class="tech">GPT-4</div>
+                <div class="tech">AI 운세생성</div>
+                <br><br>
+                <div class="file">api.openai.com</div>
+            </div>
+        </div>
+        
+        <div class="flow-description">
+            <h3>📋 시스템 실행 순서 (번호별 상세 흐름)</h3>
+            
+            <div class="flow-step" style="border-left-color: #2196f3;">
+                <strong>① 페이지 로드</strong> <span style="color: #2196f3;">[Frontend]</span><br>
+                사용자가 웹브라우저에서 운세 사이트 접속 → HTML, CSS, JS 파일 로드
+            </div>
+            
+            <div class="flow-step" style="border-left-color: #2196f3;">
+                <strong>② 사용자 입력</strong> <span style="color: #2196f3;">[Frontend]</span><br>
+                생년월일, 운세 종류, 고민사항, OpenAI API 키 입력 후 "운세 보기" 버튼 클릭
+            </div>
+            
+            <div class="flow-step" style="border-left-color: #ff9800;">
+                <strong>③ 데이터 검증 & 전송</strong> <span style="color: #ff9800;">[Backend]</span><br>
+                script.js가 입력 데이터를 JSON으로 변환 → FastAPI 서버 /fortune 엔드포인트로 POST 요청
+            </div>
+            
+            <div class="flow-step" style="border-left-color: #9c27b0;">
+                <strong>④ AI 운세 생성 요청</strong> <span style="color: #9c27b0;">[External API]</span><br>
+                main.py가 사용자 정보 기반으로 OpenAI GPT API에 개인화된 운세 생성 프롬프트 전송
+            </div>
+            
+            <div class="flow-step" style="border-left-color: #9c27b0;">
+                <strong>⑤ AI 응답 수신</strong> <span style="color: #9c27b0;">[External API]</span><br>
+                OpenAI API가 생성한 운세 텍스트를 FastAPI 서버가 수신
+            </div>
+            
+            <div class="flow-step" style="border-left-color: #ff9800;">
+                <strong>⑥ 결과 처리 & 응답</strong> <span style="color: #ff9800;">[Backend]</span><br>
+                main.py가 운세 결과를 JSON 형태로 가공하여 웹브라우저에 HTTP 응답 전송
+            </div>
+            
+            <div class="flow-step" style="border-left-color: #2196f3;">
+                <strong>⑦ 결과 표시</strong> <span style="color: #2196f3;">[Frontend]</span><br>
+                script.js가 받은 운세 데이터를 파싱하여 사용자에게 보기 좋게 화면에 표시
+            </div>
+        </div>
+        
+        <div style="background: #e3f2fd; padding: 25px; border-radius: 10px; margin-top: 30px;">
+            <h3 style="color: #1976d2; margin-bottom: 20px;">💻 각 코드별 상세 역할</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #2196f3;">
+                    <h4 style="color: #2196f3; margin-bottom: 10px;">📄 index.html</h4>
+                    <ul style="color: #666; font-size: 14px; line-height: 1.5; margin: 0; padding-left: 20px;">
+                        <li>웹페이지 기본 구조 정의</li>
+                        <li>사용자 입력 폼 요소들 배치</li>
+                        <li>운세 결과 표시 영역 구성</li>
+                        <li>JavaScript, CSS 파일 연결</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #9c27b0;">
+                    <h4 style="color: #9c27b0; margin-bottom: 10px;">🎨 style.css</h4>
+                    <ul style="color: #666; font-size: 14px; line-height: 1.5; margin: 0; padding-left: 20px;">
+                        <li>신비로운 운세 테마 디자인</li>
+                        <li>배경, 색상, 애니메이션 효과</li>
+                        <li>반응형 레이아웃 구현</li>
+                        <li>사용자 경험(UX) 향상</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #ff9800;">
+                    <h4 style="color: #ff9800; margin-bottom: 10px;">⚡ script.js</h4>
+                    <ul style="color: #666; font-size: 14px; line-height: 1.5; margin: 0; padding-left: 20px;">
+                        <li>사용자 입력 데이터 수집</li>
+                        <li>서버와 HTTP 통신 처리</li>
+                        <li>로딩 상태 관리</li>
+                        <li>운세 결과 화면 표시</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #4caf50;">
+                    <h4 style="color: #4caf50; margin-bottom: 10px;">🐍 main.py</h4>
+                    <ul style="color: #666; font-size: 14px; line-height: 1.5; margin: 0; padding-left: 20px;">
+                        <li>FastAPI 웹서버 구동</li>
+                        <li>정적 파일 서빙 (HTML, CSS, JS)</li>
+                        <li>OpenAI API 호출 및 처리</li>
+                        <li>운세 생성 로직 구현</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #607d8b;">
+                    <h4 style="color: #607d8b; margin-bottom: 10px;">📦 requirements.txt</h4>
+                    <ul style="color: #666; font-size: 14px; line-height: 1.5; margin: 0; padding-left: 20px;">
+                        <li>Python 패키지 의존성 명시</li>
+                        <li>FastAPI, OpenAI 라이브러리 버전</li>
+                        <li>배포 환경 일관성 보장</li>
+                        <li>pip install 명령으로 설치</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
