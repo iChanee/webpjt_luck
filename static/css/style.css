@@ -1,0 +1,349 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 전체 레이아웃 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* 헤더 */
+.header {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    opacity: 0.9;
+    font-size: 16px;
+}
+
+/* 컨텐츠 */
+.content {
+    padding: 40px;
+}
+
+/* API 키 섹션 */
+.api-key-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 2px dashed #dee2e6;
+}
+
+.api-key-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.api-key-section input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.api-key-section input:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+.api-key-section small {
+    color: #6c757d;
+    font-size: 12px;
+}
+
+/* 폼 섹션 */
+.form-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #e9ecef;
+}
+
+.input-group h3 {
+    color: #495057;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* 폼 필드 */
+.form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-field input, 
+.form-field select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-field input:focus, 
+.form-field select:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+.date-inputs {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
+}
+
+/* 운세 타입 */
+.fortune-types {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.fortune-type {
+    background: white;
+    border: 2px solid #dee2e6;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    user-select: none;
+}
+
+.fortune-type:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+    transform: translateY(-2px);
+}
+
+.fortune-type.selected {
+    border-color: #667eea;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.fortune-type .icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* 고민 입력 */
+.concern-input {
+    grid-column: 1 / -1;
+}
+
+.concern-input textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+.concern-input textarea:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+/* 생성 버튼 */
+.generate-btn {
+    width: 100%;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-bottom: 30px;
+}
+
+.generate-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+}
+
+.generate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 로딩 */
+.loading {
+    text-align: center;
+    padding: 40px;
+    display: none;
+}
+
+.loading.show {
+    display: block;
+}
+
+.loading .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+/* 결과 섹션 */
+.result-section {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 15px;
+    padding: 30px;
+    color: white;
+    display: none !important; /* 강제 숨김 */
+    margin-top: 30px;
+}
+
+.result-section.show {
+    display: block !important; /* 강제 표시 */
+    animation: fadeIn 0.5s ease-in;
+}
+
+.result-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.fortune-result {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 15px;
+    line-height: 1.6;
+    font-size: 16px;
+    white-space: pre-wrap;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 100px; /* 최소 높이 보장 */
+}
+
+.result-info {
+    text-align: center;
+    opacity: 0.9;
+    margin-top: 15px;
+}
+
+.result-info small {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 상태 메시지 */
+.status {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+}
+
+.status.error {
+    color: #721c24;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+.status.success {
+    color: #155724;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+/* 애니메이션 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .form-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .fortune-types {
+        grid-template-columns: 1fr;
+    }
+    
+    .date-inputs {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+    .container {
+        margin: 10px;
+    }
+    
+    .content {
+        padding: 20px;
+    }
+    
+    .header {
+        padding: 20px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+}
