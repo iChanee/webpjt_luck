@@ -36,7 +36,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 class FortuneRequest(BaseModel):
     birth_date: str = Field(..., description="생년월일")
     gender: str = Field(..., description="성별")
-    zodiac: str = Field(..., description="띠")
     name: Optional[str] = Field(None, max_length=50, description="이름")
     concern: Optional[str] = Field(None, max_length=500, description="고민사항")
     fortune_types: List[str] = Field(..., min_items=1, max_items=6, description="운세 타입들")
@@ -66,11 +65,30 @@ async def read_root():
         </body></html>
         """)
 
+def get_zodiac(birth_date_str):
+    try:
+        # 생년월일에서 연도 추출
+        year = int(birth_date_str[:4])
+        zodiacs = [
+            "쥐", "소", "호랑이", "토끼", "용", "뱀",
+            "말", "양", "원숭이", "닭", "개", "돼지"
+        ]
+        # 4로 나눈 나머지가 0이면 쥐띠부터 시작 (예: 2020년 쥐띠)
+        idx = (year - 4) % 12
+        return zodiacs[idx]
+    except Exception:
+        return "알수없음"
+
 @app.post("/api/fortune", response_model=FortuneResponse)
 async def generate_fortune(request: FortuneRequest):
     """AI 운세 생성"""
     try:
-        print(f"✅ 운세 생성 요청 - 사용자: {request.name or '익명'}, 띠: {request.zodiac}띠")
+        # 띠 계산 함수
+        
+        # 띠 자동 계산
+        zodiac = get_zodiac(request.birth_date)
+            
+        print(f"✅ 운세 생성 요청 - 사용자: {request.name or '익명'}, 띠: {zodiac}띠")
         
         # 서버에 설정된 API 키 확인
         if not OPENAI_API_KEY:
@@ -121,7 +139,7 @@ async def generate_fortune(request: FortuneRequest):
 📋 기본 정보:
 - 생년월일: {request.birth_date}
 - 성별: {request.gender}
-- 띠: {request.zodiac}띠
+- 띠: {zodiac}띠
 - 이름: {request.name or "고객님"}
 
 🔮 요청하는 운세: {selected_types_str}"""
@@ -135,7 +153,7 @@ async def generate_fortune(request: FortuneRequest):
 
 다음 조건으로 운세를 봐주세요:
 1. 선택된 운세 종류에만 집중하고, 다른 영역은 언급하지 마세요
-2. {request.zodiac}띠의 특성을 반영한 구체적이고 실용적인 조언을 제공하세요
+2. {zodiac}띠의 특성을 반영한 구체적이고 실용적인 조언을 제공하세요
 3. 일반적인 내용보다는 개인에게 특화된 조언을 해주세요
 4. 긍정적이되 현실적인 톤으로 작성해주세요
 5. 전체적으로 400-500자 내외로 작성해주세요
@@ -172,7 +190,7 @@ async def generate_fortune(request: FortuneRequest):
         user_info = {
             "birth_date": request.birth_date,
             "gender": request.gender,
-            "zodiac": request.zodiac,
+            "zodiac": zodiac,
             "name": request.name or "고객님",
             "fortune_types": request.fortune_types
         }

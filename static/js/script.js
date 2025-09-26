@@ -98,13 +98,7 @@ function setupEventListeners() {
   }
 
   // 입력 필드 변경 (띠 필드 추가)
-  const inputFields = [
-    "birthYear",
-    "birthMonth",
-    "birthDay",
-    "gender",
-    "zodiac",
-  ];
+  const inputFields = ["birthYear", "birthMonth", "birthDay"];
   inputFields.forEach((fieldId) => {
     const element = document.getElementById(fieldId);
     if (element) {
@@ -147,15 +141,13 @@ function updateButtonState() {
   const birthYear = document.getElementById("birthYear")?.value;
   const birthMonth = document.getElementById("birthMonth")?.value;
   const birthDay = document.getElementById("birthDay")?.value;
-  const gender = document.getElementById("gender")?.value;
-  const zodiac = document.getElementById("zodiac")?.value;
+  const gender = document.querySelector('input[name="gender"]:checked')?.value;
 
   const hasBirthDate = birthYear && birthMonth && birthDay;
   const hasGender = gender;
-  const hasZodiac = zodiac;
   const hasFortuneType = state.selectedFortuneTypes.length > 0;
 
-  const isValid = hasBirthDate && hasGender && hasZodiac && hasFortuneType;
+  const isValid = hasBirthDate && hasGender && hasFortuneType;
 
   if (elements.generateBtn) {
     elements.generateBtn.disabled = !isValid || state.isLoading;
@@ -167,15 +159,13 @@ function collectFormData() {
   const birthYear = document.getElementById("birthYear")?.value;
   const birthMonth = document.getElementById("birthMonth")?.value;
   const birthDay = document.getElementById("birthDay")?.value;
-  const gender = document.getElementById("gender")?.value;
-  const zodiac = document.getElementById("zodiac")?.value;
+  const gender = document.querySelector('input[name="gender"]:checked')?.value;
   const name = document.getElementById("name")?.value?.trim();
   const concern = document.getElementById("concern")?.value?.trim();
 
   return {
     birth_date: `${birthYear}년 ${birthMonth}월 ${birthDay}일`,
     gender: gender,
-    zodiac: zodiac,
     name: name || null,
     concern: concern || null,
     fortune_types: state.selectedFortuneTypes,
@@ -364,10 +354,6 @@ function validateFormData(formData) {
     return "성별을 선택해주세요.";
   }
 
-  if (!formData.zodiac) {
-    return "띠를 선택해주세요.";
-  }
-
   if (!formData.fortune_types || formData.fortune_types.length === 0) {
     return "운세 종류를 하나 이상 선택해주세요.";
   }
@@ -472,13 +458,16 @@ function checkDOM() {
   console.log("📋 현재 상태:", state);
 }
 
-document
-  .getElementById("gender-female")
-  ?.addEventListener("change", function (event) {
-    const label = document.querySelector('label[for="gender-female"]');
-    if (event.target.checked) {
-      label?.classList.add("selected");
-    } else {
-      label?.classList.remove("selected");
-    }
+// gender 라디오 버튼 selected 클래스 처리
+document.querySelectorAll(".gender-radio").forEach((radio) => {
+  radio.addEventListener("change", function () {
+    console.log("👤 성별 선택 변경:", this.value);
+    document.querySelectorAll(".gender-type").forEach((el) => {
+      if (el !== this.parentElement) {
+        el.classList.remove("selected");
+      } else {
+        el.classList.add("selected");
+      }
+    });
   });
+});
