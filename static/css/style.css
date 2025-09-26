@@ -1,580 +1,653 @@
 /* 운세풀이 웹페이지 CSS - 신비로운 테마 */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* 전체 레이아웃 - 신비로운 밤하늘 테마 */
 body {
-    font-family: 'Noto Serif KR', serif;
-    background: linear-gradient(135deg, #1e1e2e 0%, #2d1b69 25%, #11192d 75%, #0f0f23 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 20px;
-    position: relative;
-    overflow-x: hidden;
+  font-family: "Noto Serif KR", serif;
+  background: linear-gradient(
+    135deg,
+    #1e1e2e 0%,
+    #2d1b69 25%,
+    #11192d 75%,
+    #0f0f23 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
 }
 
 /* 별빛 효과 */
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
-        radial-gradient(2px 2px at 40px 70px, #fff, transparent),
-        radial-gradient(1px 1px at 90px 40px, #ffd700, transparent),
-        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
-        radial-gradient(2px 2px at 160px 30px, #ffd700, transparent);
-    background-repeat: repeat;
-    background-size: 200px 100px;
-    animation: twinkle 4s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: 1;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
+    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #ffd700, transparent),
+    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 30px, #ffd700, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
 }
 
 @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 25px;
-    box-shadow: 
-        0 25px 50px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-    overflow: hidden;
-    position: relative;
-    z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 /* 헤더 - 황금빛 그라데이션 */
 .header {
-    background: linear-gradient(135deg, #2d1b69 0%, #4c1d95 50%, #5b21b6 100%);
-    color: white;
-    padding: 40px 30px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(135deg, #2d1b69 0%, #4c1d95 50%, #5b21b6 100%);
+  color: white;
+  padding: 40px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,215,0,0.1) 50%, transparent 70%);
-    animation: shimmer 3s ease-in-out infinite;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 215, 0, 0.1) 50%,
+    transparent 70%
+  );
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-    0%, 100% { transform: translateX(-100%); }
-    50% { transform: translateX(100%); }
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
 }
 
 .header h1 {
-    font-size: 36px;
-    margin-bottom: 15px;
-    font-weight: 700;
-    background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-    position: relative;
-    z-index: 1;
+  background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.header--title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 36px;
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 
 .header p {
-    opacity: 0.9;
-    font-size: 18px;
-    font-weight: 300;
-    position: relative;
-    z-index: 1;
+  opacity: 0.9;
+  font-size: 18px;
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
 }
 
 /* 컨텐츠 */
 .content {
-    padding: 50px 40px;
+  padding: 50px 40px;
 }
 
 /* API 키 섹션 - 신비로운 보라색 */
 .api-key-section {
-    background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(75, 0, 130, 0.1));
-    backdrop-filter: blur(10px);
-    padding: 25px;
-    border-radius: 20px;
-    margin-bottom: 40px;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 69, 19, 0.1),
+    rgba(75, 0, 130, 0.1)
+  );
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .api-key-section label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 600;
-    color: #ffd700;
-    font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #ffd700;
+  font-size: 16px;
 }
 
 .api-key-section input {
-    width: 100%;
-    padding: 15px 20px;
-    border: 2px solid rgba(255, 215, 0, 0.3);
-    border-radius: 15px;
-    font-size: 14px;
-    margin-bottom: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    color: white;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 15px;
+  font-size: 14px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .api-key-section input:focus {
-    border-color: #ffd700;
-    outline: none;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  border-color: #ffd700;
+  outline: none;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
 .api-key-section input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .api-key-section small {
-    color: rgba(255, 215, 0, 0.8);
-    font-size: 13px;
+  color: rgba(255, 215, 0, 0.8);
+  font-size: 13px;
 }
 
 /* 폼 섹션 */
 .form-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
 }
 
 .input-group {
-    background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-    backdrop-filter: blur(15px);
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .input-group h3 {
-    color: #ffd700;
-    margin-bottom: 25px;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
+  color: #ffd700;
+  margin-bottom: 25px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
 }
 
 /* 폼 필드 */
 .form-field {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .form-field label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.form-field input, 
+.form-field input,
 .form-field select {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    color: white;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  transition: all 0.3s ease;
 }
 
-.form-field input:focus, 
+.form-field input:focus,
 .form-field select:focus {
-    border-color: #ffd700;
-    outline: none;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+  outline: none;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
 }
 
 .form-field input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .date-inputs {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 12px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 12px;
 }
 
 /* 운세 타입 - 카드형 디자인 */
 .fortune-types {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
 
 .fortune-type {
-    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 18px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    user-select: none;
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .fortune-type::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
-    transition: left 0.5s;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
 }
 
 .fortune-type:hover::before {
-    left: 100%;
+  left: 100%;
 }
 
 .fortune-type:hover {
-    border-color: #ffd700;
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
 }
 
 .fortune-type.selected {
-    border-color: #ffd700;
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+  border-color: #ffd700;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.2),
+    rgba(255, 215, 0, 0.1)
+  );
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
 }
 
 .fortune-type .icon {
-    font-size: 28px;
-    margin-bottom: 12px;
-    color: #ffd700;
+  font-size: 28px;
+  margin-bottom: 12px;
+  color: #ffd700;
 }
 
 .fortune-type span {
-    color: white;
-    font-weight: 500;
+  color: white;
+  font-weight: 500;
 }
 
 .fortune-type {
-    color: white;
+  color: white;
 }
 
 /* 고민 입력 */
 .concern-input {
-    grid-column: 1 / -1;
+  grid-column: 1 / -1;
 }
 
 .concern-input textarea {
-    width: 100%;
-    padding: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    font-size: 15px;
-    resize: vertical;
-    min-height: 100px;
-    font-family: inherit;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    color: white;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  font-size: 15px;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .concern-input textarea:focus {
-    border-color: #ffd700;
-    outline: none;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+  outline: none;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
 }
 
 .concern-input textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* 생성 버튼 - 황금빛 매직 */
 .generate-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
-    color: #1a1a2e;
-    border: none;
-    padding: 20px;
-    border-radius: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+  width: 100%;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+  color: #1a1a2e;
+  border: none;
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
 }
 
 .generate-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.6s;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s;
 }
 
 .generate-btn:hover:not(:disabled)::before {
-    left: 100%;
+  left: 100%;
 }
 
 .generate-btn:hover:not(:disabled) {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
 }
 
 .generate-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* 로딩 - 신비로운 스피너 */
 .loading {
-    text-align: center;
-    padding: 50px;
-    display: none;
+  text-align: center;
+  padding: 50px;
+  display: none;
 }
 
 .loading.show {
-    display: block;
+  display: block;
 }
 
 .loading .spinner {
-    width: 60px;
-    height: 60px;
-    border: 4px solid rgba(255, 215, 0, 0.3);
-    border-top: 4px solid #ffd700;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 25px;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 215, 0, 0.3);
+  border-top: 4px solid #ffd700;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 25px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
 .loading p {
-    color: #ffd700;
-    font-size: 18px;
-    font-weight: 500;
+  color: #ffd700;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 /* 결과 섹션 - 마법적인 결과창 */
 .result-section {
-    background: linear-gradient(135deg, rgba(139, 69, 19, 0.2), rgba(75, 0, 130, 0.2));
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 215, 0, 0.3);
-    border-radius: 20px;
-    padding: 40px;
-    color: white;
-    display: none !important;
-    margin-top: 40px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 69, 19, 0.2),
+    rgba(75, 0, 130, 0.2)
+  );
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  color: white;
+  display: none !important;
+  margin-top: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
 .result-section::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, rgba(255,215,0,0.1), transparent);
-    animation: rotate 10s linear infinite;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(255, 215, 0, 0.1),
+    transparent
+  );
+  animation: rotate 10s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .result-section.show {
-    display: block !important;
-    animation: fadeInMagic 0.8s ease-in;
+  display: block !important;
+  animation: fadeInMagic 0.8s ease-in;
 }
 
 @keyframes fadeInMagic {
-    0% { 
-        opacity: 0; 
-        transform: translateY(30px) scale(0.9);
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0) scale(1);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .result-section h3 {
-    font-size: 28px;
-    margin-bottom: 30px;
-    text-align: center;
-    background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
-    z-index: 1;
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-align: center;
+  background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 .fortune-result {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    padding: 30px;
-    border-radius: 18px;
-    line-height: 1.8;
-    font-size: 16px;
-    white-space: pre-wrap;
-    margin-bottom: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    min-height: 120px;
-    position: relative;
-    z-index: 1;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 18px;
+  line-height: 1.8;
+  font-size: 16px;
+  white-space: pre-wrap;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 120px;
+  position: relative;
+  z-index: 1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .result-info {
-    text-align: center;
-    opacity: 0.9;
-    margin-top: 20px;
-    position: relative;
-    z-index: 1;
+  text-align: center;
+  opacity: 0.9;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .result-info small {
-    font-size: 13px;
-    color: rgba(255, 215, 0, 0.8);
+  font-size: 13px;
+  color: rgba(255, 215, 0, 0.8);
 }
 
 /* 상태 메시지 */
 .status {
-    text-align: center;
-    margin-top: 25px;
-    font-weight: bold;
-    padding: 18px;
-    border-radius: 15px;
-    display: none;
-    backdrop-filter: blur(10px);
+  text-align: center;
+  margin-top: 25px;
+  font-weight: bold;
+  padding: 18px;
+  border-radius: 15px;
+  display: none;
+  backdrop-filter: blur(10px);
 }
 
 .status.error {
-    color: #ff6b6b;
-    background: rgba(255, 107, 107, 0.1);
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    display: block;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  display: block;
 }
 
 .status.success {
-    color: #51cf66;
-    background: rgba(81, 207, 102, 0.1);
-    border: 1px solid rgba(81, 207, 102, 0.3);
-    display: block;
+  color: #51cf66;
+  background: rgba(81, 207, 102, 0.1);
+  border: 1px solid rgba(81, 207, 102, 0.3);
+  display: block;
 }
 
 /* 애니메이션 */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-    .form-section {
-        grid-template-columns: 1fr;
-    }
-    
-    .fortune-types {
-        grid-template-columns: 1fr;
-    }
-    
-    .date-inputs {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-    
-    .container {
-        margin: 10px;
-    }
-    
-    .content {
-        padding: 30px 25px;
-    }
-    
-    .header {
-        padding: 30px 20px;
-    }
-    
-    .header h1 {
-        font-size: 28px;
-    }
-    
-    .header p {
-        font-size: 16px;
-    }
-    
-    body {
-        padding: 10px;
-    }
+  .form-section {
+    grid-template-columns: 1fr;
+  }
+
+  .fortune-types {
+    grid-template-columns: 1fr;
+  }
+
+  .date-inputs {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .container {
+    margin: 10px;
+  }
+
+  .content {
+    padding: 30px 25px;
+  }
+
+  .header {
+    padding: 30px 20px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .header p {
+    font-size: 16px;
+  }
+
+  body {
+    padding: 10px;
+  }
 }
 
 /* 스크롤바 스타일링 */
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ffd700, #ffed4e);
-    border-radius: 10px;
-    border: 2px solid transparent;
-    background-clip: content-box;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #ffed4e, #ffd700);
-    background-clip: content-box;
+  background: linear-gradient(135deg, #ffed4e, #ffd700);
+  background-clip: content-box;
 }
 
 /* 선택 영역 스타일링 */
 ::selection {
-    background: rgba(255, 215, 0, 0.3);
-    color: white;
+  background: rgba(255, 215, 0, 0.3);
+  color: white;
 }
