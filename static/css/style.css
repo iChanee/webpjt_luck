@@ -257,6 +257,17 @@ body::before {
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* number input 스핀 버튼 제거 */
+.form-field input[type="number"]::-webkit-outer-spin-button,
+.form-field input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-field input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .date-inputs {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
