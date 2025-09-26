@@ -168,14 +168,14 @@ python main.py
 또는
 
 ```bash
-uvicorn main:app --reload --port 8000
+uvicorn main:app --reload --port 5000
 ```
 
 ### 6. 애플리케이션 접속
 
-- 메인 페이지: http://localhost:8000
-- API 문서: http://localhost:8000/docs
-- 서버 상태: http://localhost:8000/health
+- 메인 페이지: http://localhost:5000
+- API 문서: http://localhost:5000/docs
+- 서버 상태: http://localhost:5000/health
 
 ## 🔗 API 엔드포인트
 
