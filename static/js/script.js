@@ -1,3 +1,5 @@
+// static/js/script.js
+
 // DOM 요소들
 const elements = {
     fortuneForm: document.getElementById('fortuneForm'),
